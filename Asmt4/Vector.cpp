@@ -27,7 +27,7 @@ Vector::~Vector()
 	capacity = 0;
 	size = 0;
 }
-
+//
 Vector& Vector::operator=(const Vector& other)
 {
 	Vector copyVector;
