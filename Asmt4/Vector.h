@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ASMT4_VECTOR_H
+#define ASMT4_VECTOR_H
+
 class Vector
 {
 private:
@@ -102,3 +104,4 @@ public:
 	 */
 };
 
+#endif
