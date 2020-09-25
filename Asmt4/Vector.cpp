@@ -15,7 +15,7 @@ Vector::Vector(const Vector& other)
 {
 	size = other.size;
 	capacity = other.capacity;
-	ptr = new int[size];
+	ptr = new int[capacity];
 	for (int i = 0; i < size; i++) {
 		ptr[i] = other.ptr[i];
 	}
@@ -30,39 +30,66 @@ Vector::~Vector()
 
 Vector& Vector::operator=(const Vector& other)
 {
-	Vector newvec;
-	newvec.ptr = other.ptr;
-	newvec.capacity = other.capacity;
-	newvec.size = other.size;
-	return newvec;
+	Vector copyVector;
+	copyVector.ptr = other.ptr;
+	copyVector.capacity = other.capacity;
+	copyVector.size = other.size;
+	return copyVector;
 }
 
 int Vector::getSize()
 {
-	return 0;
+	return size;
 }
 
 int Vector::getCapacity()
 {
-	return 0;
+	return capacity;
 }
 
 bool Vector::push(int element)
 {
-	return false;
+	try {
+		if (size == capacity) resize();
+		for (int i = size; i > 0; i--) {
+			ptr[i] = ptr[i - 1];
+		}
+		ptr[0] = element;
+		size++;
+		return true;
+	}
+	catch (...) {
+		cerr << "Integer not entered";
+		return false;
+	}
 }
 
 int Vector::Delete()
 {
-	return 0;
+	int lastElement = ptr[size - 1];
+	ptr[size - 1] = NULL;
+	size--;
+	return lastElement;
 }
 
 bool Vector::resize()
 {
-	return false;
+	if (capacity == 0) {
+		capacity = 1;
+	}
+	else
+	{
+		capacity *= 2;
+	}
+	/*int* temp = new int[capacity];
+	for (int i = 0; i < size; i++) {
+		temp[i] = ptr[i];
+	}
+	ptr = temp;*/
+	return true;
 }
 
 int& Vector::operator[](unsigned int index)
 {
-	// TODO: insert return statement here
+	return ptr[index];
 }
